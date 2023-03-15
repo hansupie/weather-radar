@@ -16,21 +16,23 @@ html, body {
 
 .header {
   width: 100%;
-  margin: 0 0 .5em 0;
+  margin: 0;
   padding: 0.75em 0;
   background-color: #FFFFFF;
   text-align: center;
   font-size: 23pt;
+  border-bottom: 1px solid #E6E6E6;
 }
 
 .content {
-  width: 90%;
+  max-width: 550px;
   margin: auto;
+  padding: 1em;
   display: grid;
-  grid-gap: 1em;
+  gap: 2em;
 }
 
-.element {
+.box {
   border: 1px solid #E6E6E6;
   border-radius: 6px;
   background-color: #FFFFFF;
@@ -42,27 +44,15 @@ html, body {
   font-size: 13pt;
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-
+.text::first-letter {
+  text-transform: capitalize;
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-  
+.secondary {
+  font-size: 13pt;
+  color: #70757A;
 }
 
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-  
+.error {
+  border-color: #B00020;
 }
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-  
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-  
-} 

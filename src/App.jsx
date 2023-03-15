@@ -2,7 +2,6 @@ import { useState } from "react";
 import { CityWeather } from "./components/CityWeather";
 
 const App = () => {
-
   const cityOptions = [
     {
       label: "Valitse kaupunki",
@@ -30,13 +29,13 @@ const App = () => {
     },
   ];
 
-  const [selected, setSelected] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
   const [cities, setCities] = useState([]);
-  console.log('cities', cities);
 
-  const handleSelect = (e) => {
+
+  const handleSelectCity = (e) => {
     const selection = e.target.value;
-    setSelected(selection);
+    setSelectedCity(selection);
 
     if (selection === "") {
       setCities([]);
@@ -54,9 +53,9 @@ const App = () => {
       <div className="header">Säätutka</div>
       <div className="content">
         <select 
-          className="select element"
-          value={selected} 
-          onChange={handleSelect}
+          className="select box"
+          value={selectedCity} 
+          onChange={handleSelectCity}
         >
           {cityOptions.map((option, index) => (
             <option value={option.value} key={index}>{option.label}</option>

@@ -1,33 +1,35 @@
+import "../css/weatherContainerBig.css";
 
 export const WeatherContainerBig = ({ city, data }) => {
-  console.log(data);
   const dateTime = new Date();
   const dateOptions = { month: "long", day: "numeric"}
   const timeOptions = { hour: "2-digit", minute: "2-digit"}
 
-  return (
-    <div className="weather-container-big element">
-      <div>
-        <p>{city}</p>
-        <p>{data.weather[0].description}</p>
+  if (city !== null && data !== null) {
+    return (
+      <div className="weather-container-big box">
+        <div className="grid-item-1">
+          <div className="city-name text">{city}</div>
+          <div className="text secondary">{data.weather[0].description}</div>
+        </div>
+        <div className="grid-item-2">
+          <div><img className="icon-big" src={`https://openweathermap.org/img/wn/${data.weather[0].icon}.png`} alt="weather icon"/></div>
+          <div className="temp">{Math.round(data.main.temp)} °C</div>
+        </div>
+        <div className="grid-item-3">
+          <div className="date text">{dateTime.toLocaleDateString("en-GB", dateOptions)}</div>
+          <div className="text secondary">{dateTime.toLocaleTimeString("en-GB", timeOptions)}</div>
+        </div>
+        <div className="grid-item-4 text secondary">
+          <div>Wind: {data.wind.speed} m/s</div>
+          <div>Humidity: {data.main.humidity} %</div>
+          { data.rain && data.rain["3h"]
+            ? <div>Precipitation: {data.rain["3h"]} mm</div>
+            : null
+          }
+        </div>
+        
       </div>
-      <div>
-        <img src={`https://openweathermap.org/img/wn/${data.weather[0].icon}.png`} alt="weather icon"/>
-        <h1>{Math.round(data.main.temp)} °C</h1>
-      </div>
-      <div>
-        <h2>{dateTime.toLocaleDateString("en-GB", dateOptions)}</h2>
-        <p>{dateTime.toLocaleTimeString("en-GB", timeOptions)}</p>
-      </div>
-      <div>
-        <p>Wind: {data.wind.speed} m/s</p>
-        <p>Humidity: {data.main.humidity} %</p>
-        { data.main.rain
-          ? <p>Precipitation: {data.main.rain} mm</p>
-          : null  
-        }
-      </div>
-      
-    </div>
-  );
+    );
+  }
 };
