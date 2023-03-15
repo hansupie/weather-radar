@@ -21,7 +21,7 @@ export const WeatherContainerBig = ({ city, data }) => {
           <div className="text secondary">{dateTime.toLocaleTimeString("en-GB", timeOptions)}</div>
         </div>
         <div className="grid-item-4 text secondary">
-          <div>Wind: {data.wind.speed} m/s</div>
+          <div data-testid="wind">Wind: {data.wind.speed} m/s</div>
           <div>Humidity: {data.main.humidity} %</div>
           { data.rain && data.rain["3h"]
             ? <div>Precipitation: {data.rain["3h"]} mm</div>

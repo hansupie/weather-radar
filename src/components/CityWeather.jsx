@@ -14,31 +14,31 @@ export const CityWeather = ({ city }) => {
   const [currentLoading, setCurrentLoading] = useState(true);
   const [forecastLoading, setForecastLoading] = useState(true);
 
-  const fetchCurrentData = async () => {
-    try {
-      const { data } = await axios.get(currentUrl(coords[city].lat, coords[city].lon, API_KEY));
-      setCurrentLoading(false);
-      setCurrentError(null);
-      setCurrentData(data);
-    } catch (error) {
-      setCurrentLoading(false);
-      setCurrentError(error.response.data.message);
+  useEffect(() => {
+    const fetchCurrentData = async () => {
+      try {
+        const { data } = await axios.get(currentUrl(coords[city].lat, coords[city].lon, API_KEY));
+        setCurrentLoading(false);
+        setCurrentError(null);
+        setCurrentData(data);
+      } catch (error) {
+        setCurrentLoading(false);
+        setCurrentError(error.response.data.message);
+      }
+    };
+  
+    const fetchForecastData = async () => {
+      try {
+        const { data } = await axios.get(forecastUrl(coords[city].lat, coords[city].lon, API_KEY));
+        setForecastLoading(false);
+        setForecastError(null);
+        setForecastData(data.list);
+      } catch (error) {
+        setForecastLoading(false);
+        setForecastError(error.response.data.message);
+      }
     }
-  };
-
-  const fetchForecastData = async () => {
-    try {
-      const { data } = await axios.get(forecastUrl(coords[city].lat, coords[city].lon, API_KEY));
-      setForecastLoading(false);
-      setForecastError(null);
-      setForecastData(data.list);
-    } catch (error) {
-      setForecastLoading(false);
-      setForecastError(error.response.data.message);
-    }
-  }
-
-  useEffect(() => {    
+    
     if (city) {
       fetchCurrentData();
       fetchForecastData();
