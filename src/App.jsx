@@ -61,9 +61,9 @@ const App = () => {
             <option value={option.value} key={index}>{option.label}</option>
           ))}
         </select>
-        {cities.map((city, index) => (
+        {cities.map((city) => (
           <CityWeather
-            key={index}
+            key={city}
             city={city}
           />
         ))}
