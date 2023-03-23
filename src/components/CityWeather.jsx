@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { WeatherContainerBig } from "./WeatherContainerBig";
-import { API_KEY, coords, currentUrl, forecastUrl } from "../constants";
+import { coords, currentUrl, forecastUrl } from "../constants";
 import axios from "axios";
 import { WeatherContainerSmall } from "./WeatherContainerSmall";
 import "../css/cityWeather.css";
@@ -17,7 +17,7 @@ export const CityWeather = ({ city }) => {
   useEffect(() => {
     const fetchCurrentData = async () => {
       try {
-        const { data } = await axios.get(currentUrl(coords[city].lat, coords[city].lon, API_KEY));
+        const { data } = await axios.get(currentUrl(coords[city].lat, coords[city].lon, import.meta.env.VITE_API_KEY));
         setCurrentLoading(false);
         setCurrentError(null);
         setCurrentData(data);
@@ -29,7 +29,7 @@ export const CityWeather = ({ city }) => {
   
     const fetchForecastData = async () => {
       try {
-        const { data } = await axios.get(forecastUrl(coords[city].lat, coords[city].lon, API_KEY));
+        const { data } = await axios.get(forecastUrl(coords[city].lat, coords[city].lon, import.meta.env.VITE_API_KEY));
         setForecastLoading(false);
         setForecastError(null);
         setForecastData(data.list);

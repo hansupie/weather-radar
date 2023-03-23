@@ -1,5 +1,3 @@
-export const API_KEY = "";
-
 export const coords = {
   "tampere": { lat: "61.4991", lon: "23.7871"},
   "jyväskylä": { lat: "62.2415", lon: "25.7209"},
